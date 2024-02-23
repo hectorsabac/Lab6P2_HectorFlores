@@ -147,8 +147,17 @@ public class FileManager2 {
         return accum += "\n";
     }
     
-    public static void Write(String ruta, String mensaje){
-        File target = new File(ruta);
+    public static void Write(String Code, String mensaje){
+        String[] NombreDeArchivo = Code.split("[<>]");
+        String[] Direccion = Code.split("[\\\\]");
+        String FileURL = "";
+        for (int File = 0; File < Direccion.length - 1; File++){
+            FileURL += Direccion[File] + "\\";
+        }
+        FileURL += NombreDeArchivo[1];
+        
+        
+        File target = new File(FileURL);
         
         System.out.println(target.isFile());
         
@@ -159,8 +168,6 @@ public class FileManager2 {
                 
                 writer.write(mensaje);
                 writer.close();
-                
-                JOptionPane.showMessageDialog(null, getFileInfo(ruta));
             } catch (IOException e) {
                 System.out.println("Ocurrió un error al escribir en el archivo.");
                 e.printStackTrace();
