@@ -93,6 +93,8 @@ public class CDMX extends JFrame{
                             Writing = true;
                             accum = "";
                         }
+                        
+                        System.out.println(Root + "<-");
                     } else if (Code.contains(Root) && Code.contains("Leer <") && Code.contains(">\n")){
                         Scripting.setText(Scripting.getText() + FileManager2.getFileInfo(Code));
                     } else if (Code.contains(Root) && Code.contains("<...>\n")){
@@ -104,7 +106,7 @@ public class CDMX extends JFrame{
                         Code = Root;
                     }
                 } else if (e.getKeyChar() == '.' && Writing){
-                    FileManager2.Write(Root, accum);
+                    FileManager2.Write(Code, accum);
                     accum = "";
                     System.out.println("Terminado");
                     Writing = false;
